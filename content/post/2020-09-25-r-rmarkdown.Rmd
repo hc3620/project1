@@ -1,0 +1,98 @@
+---
+title: "Problem set 1"
+author: "HaEun Choi"
+date: 2020-09-25T21:13:14-05:00
+bibliography: "references.bib"
+categories: ["R"]
+tags: ["R Markdown", "plot", "regression"]
+
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(collapse = TRUE)
+```
+
+#Abstract
+My abstract
+
+# Introduction
+
+We use @citetidyverse.
+
+Three paragraph statement.
+
+First paragraph: General. Motivational. Majors specific finding. 
+
+Second paragraph: More about what you did and found.
+
+Third paragraph: Outline of the paper. Future work. Weaknesses.
+
+
+
+```{r download, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+rm(list=ls())
+#install.packages("devtools")
+library(devtools)
+#devtools::install_github("hodgettsp/cesR")
+#library(tidyverse)
+library(cesR)
+get_ces("ces2019_web")
+#install.packages("Rcpp")
+library("Rcpp")
+
+```
+
+
+#Data
+The CES dataset is
+
+```{r}
+get_decon()
+mydata=data.frame(decon$province_territory,ces2019_web$cps19_v_likely)
+#unique(mydata$ces2019_web.cps19_v_likely)
+mydata$vote=ifelse(mydata$ces2019_web.cps19_v_likely==5 | mydata$ces2019_web.cps19_v_likely==6 | is.na(mydata$ces2019_web.cps19_v_likely), NA, ifelse(mydata$ces2019_web.cps19_v_likely==3 | mydata$ces2019_web.cps19_v_likely==4, 0, 1))
+
+```
+
+
+
+#Data Discussion
+The variables we focus on are....
+
+Summary statistics for these variables...
+
+You must include graphs.
+
+
+
+
+# Graph 
+
+```{r}
+#install.packages("ggplot2")
+library(ggplot2)
+ggplot(mydata, aes(x=decon.province_territory, y=vote)) + stat_summary(fun.y="mean", geom="bar") + theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) + coord_flip()
+```
+
+
+
+#Weaknesses 
+
+
+
+#Nexsteps
+
+
+
+
+# References
+
+- Stephenson, Laura B; Harell, Allison; Rubenson, Daniel; Loewen, Peter John, 2020, '2019 Canadian Election Study - Online Survey', https://doi.org/10.7910/DVN/DUS88V, Harvard Dataverse, V1
+
+- Stephenson, Laura, Allison Harrel, Daniel Rubenson and Peter Loewen. Forthcoming. 'Measuring Preferences and Behaviour in the 2019 Canadian Election Study,' Canadian Journal of Political Science.
+
+-ggplot2: Elegant Graphics for Data Analysis
+Wickham, H., 2016. Springer-Verlag New York.
+
