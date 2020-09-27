@@ -29,8 +29,10 @@ mydata=data.frame(decon$province_territory,ces2019_web$cps19_v_likely)
 #unique(mydata$ces2019_web.cps19_v_likely)
 mydata$vote=ifelse(mydata$ces2019_web.cps19_v_likely==5 | mydata$ces2019_web.cps19_v_likely==6 | is.na(mydata$ces2019_web.cps19_v_likely), NA, ifelse(mydata$ces2019_web.cps19_v_likely==3 | mydata$ces2019_web.cps19_v_likely==4, 0, 1))</code></pre>
 <p>#Data Discussion
-The variables we focus on are….</p>
+The variables we focus on are….“province” “likely scale” response to the upcoming election
+both variables are categorical</p>
 <p>Summary statistics for these variables…</p>
+<p>Descriptive statiscis –&gt; how many ppl, “table”</p>
 <p>You must include graphs.</p>
 </div>
 <div id="graph" class="section level1">
